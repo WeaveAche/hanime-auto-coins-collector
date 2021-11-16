@@ -51,10 +51,15 @@ def getInfo(response):
 
     available_keys = list(received["env"]["mobile_apps"].keys())
 
-    if "osts_build_number" in available_keys:
+    if "_build_number" in available_keys:
+        ret["version"] = received["env"]["mobile_apps"]["_build_number"]
+    elif "osts_build_number" in available_keys:
         ret["version"] = received["env"]["mobile_apps"]["osts_build_number"]
-    else:
+    elif "severilous_build_number" in available_keys:
         ret["version"] = received["env"]["mobile_apps"]["severilous_build_number"]
+    else:
+        print("[!!!] Unable to find the build number for the latest mobile app, please report an issue on github.")
+        exit()
 
     return ret
 
@@ -66,7 +71,7 @@ def getCoins(s:requests.Session,version,uid):
     curr_time = str(int(time.time()))
     to_hash = f"coins{version}|{uid}|{curr_time}|coins{version}"
 
-    data = {"reward_token": getSHA256(to_hash)+f"|{curr_time}" ,"version":"63"}
+    data = {"reward_token": getSHA256(to_hash)+f"|{curr_time}" ,"version":f"{version}"}
 
     response = s.post(f"{host}/rapi/v4/coins",data=data)
     
