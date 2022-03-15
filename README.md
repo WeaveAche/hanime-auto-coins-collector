@@ -7,8 +7,10 @@ Tested on current version 3.7.1
 
 ## Usage
 1. Clone this repository 
-2. Open `.env` file and enter your hanime email and password
-3. Run the script.
+2. Install all the requirements:
+`pip install -r requirements.txt`
+3. Open `.env` file and enter your hanime email and password
+4. Run the script.
 
 If you get any errors or need any help, feel free to open an issue.
 
