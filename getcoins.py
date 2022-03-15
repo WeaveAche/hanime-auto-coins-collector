@@ -1,18 +1,18 @@
 import json
+import os
 import time
 from hashlib import sha256
 
 import requests
 from dateutil import parser
+from dotenv import load_dotenv
+
+load_dotenv()
 
 host = "https://www.universal-cdn.com"
 
-# enter your hanime credentials here
-with open("credentials.txt","r") as f:
-    creds = json.loads(f.read())
-
-hanime_email = creds["hanime_email"]
-hanime_password = creds["hanime_password"]
+hanime_email = os.getenv('hanime_email')
+hanime_password = os.getenv('hanime_password')
 
 
 def getSHA256(to_hash):
