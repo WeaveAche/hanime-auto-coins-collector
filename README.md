@@ -3,12 +3,12 @@ Hanime mobile app gives some coins as reward on clicking an ad. This has a timeo
 
 This script when run, will forge a request to the server claiming that you have clicked on the ad. The server then adds the coins to your account. It still checks the last clicked time, so you can only run this once every 3 hours. But this makes it easier to automate getting coins, just set a cronjob that'll execute the script periodically every 3 hours.
 
-Tested on current version 3.6.7
+Tested on current version 3.7.1
 
 ## Usage
-* Clone this repository 
-* Open credentials.txt and enter your hanime email and password
-* Run the script.
+1. Clone this repository 
+2. Open `.env` file and enter your hanime email and password
+3. Run the script.
 
 If you get any errors or need any help, feel free to open an issue.
 
