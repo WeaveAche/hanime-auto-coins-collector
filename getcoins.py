@@ -92,13 +92,17 @@ def main():
     
     print(f"[*] Logged in as {info['name']}")
     print(f"[*] Coins count: {info['coins']}")
-    print(f"[*] Last clicked on {parser.parse(info['last_clicked']).ctime()} UTC")
+    
+    if info['last_clicked'] is not None:
+        print(f"[*] Last clicked on {parser.parse(info['last_clicked']).ctime()} UTC")
 
-    # check whether if u already received a reward less than 3 hrs ago
-    # the check also happens on server side so there is no apparent way to bypass it
-    if time.time() - parser.parse(info["last_clicked"]).timestamp() < 3*3600:
-        print("[!!!] You've already clicked on an ad less than 3 hrs ago.")
-        exit()
+        # check whether if u already received a reward less than 3 hrs ago
+        # the check also happens on server side so there is no apparent way to bypass it
+        if time.time() - parser.parse(info["last_clicked"]).timestamp() < 3*3600:
+            print("[!!!] You've already clicked on an ad less than 3 hrs ago.")
+            exit()
+    else:
+        print(f"[*] Never clicked on an ad")
 
     # finally, getCoins
     getCoins(s,info["version"],info["uid"])
